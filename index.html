@@ -48,21 +48,21 @@
                 </div>
             </div>
             
-            <div class="hidden lg:flex space-x-7 space-x-reverse text-sm font-semibold text-slate-300">
+            <div class="hidden lg:flex space-x-6 space-x-reverse text-sm font-semibold text-slate-300">
                 <a href="#about" class="hover:text-orange-400 transition">عن الكورس</a>
                 <a href="#target" class="hover:text-orange-400 transition">الفئات المستهدفة</a>
-                <a href="#gallery" class="hover:text-orange-400 transition">معرض الأنشطة</a>
-                <a href="booking.html" class="hover:text-orange-400 transition">صفحة الحجز المستقلة</a>
+                <a href="booking.html" class="hover:text-orange-400 transition">صفحة الحجز (Booking)</a>
+                <a href="html.html" class="hover:text-orange-400 transition">نموذج حجز سريع (HTML)</a>
             </div>
 
-            <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="flex items-center space-x-3 space-x-reverse">
                 <a href="admin.html" class="flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-orange-400 text-orange-400 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-md">
-                    <i class="fa-solid fa-lock"></i>
-                    <span>Admin 📋</span>
+                    <i class="fa-solid fa-gauge-high"></i>
+                    <span>الكنترول بانل / الأدمن 📋</span>
                 </a>
 
                 <button onclick="openBookingModal()" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-slate-950 font-extrabold px-5 py-2 rounded-xl shadow-lg transition duration-200 text-sm">
-                    سجل الآن 🚀
+                    حجز سريع 🚀
                 </button>
             </div>
         </div>
@@ -85,10 +85,13 @@
             </p>
 
             <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <button onclick="openBookingModal()" class="bg-orange-500 hover:bg-orange-400 text-slate-950 font-black px-8 py-3.5 rounded-xl glow-orange transition text-base flex items-center space-x-2 space-x-reverse">
-                    <span>ابدأ رحلتك الهندسية صح</span>
+                <a href="booking.html" class="bg-orange-500 hover:bg-orange-400 text-slate-950 font-black px-8 py-3.5 rounded-xl glow-orange transition text-base flex items-center space-x-2 space-x-reverse">
+                    <span>احجز عبر صفحة الحجز 🚀</span>
                     <i class="fa-solid fa-arrow-left"></i>
-                </button>
+                </a>
+                <a href="html.html" class="bg-slate-900 border border-slate-700 hover:border-orange-400 text-white font-bold px-6 py-3.5 rounded-xl transition text-base flex items-center space-x-2 space-x-reverse">
+                    <span>نموذج التسجيل السريع</span>
+                </a>
             </div>
         </div>
     </section>
@@ -131,7 +134,7 @@
         </div>
     </section>
 
-    <!-- Booking Modal -->
+    <!-- Modal الحجز -->
     <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-6 relative shadow-2xl space-y-5">
             <button onclick="closeBookingModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
@@ -175,7 +178,7 @@
         </div>
     </div>
 
-    <!-- Firebase Integration -->
+    <!-- Firebase SDK Modules -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -225,10 +228,10 @@
 
                 bookingForm.reset();
                 window.closeBookingModal();
-                alert('✅ تم تسجيل الحجز بنجاح في الفايربيز!');
+                alert('✅ تم تسجيل الحجز بنجاح!');
             } catch (error) {
                 console.error("خطأ أثناء تسجيل الحجز: ", error);
-                alert("❌ حدث خطأ أثناء الحجز، يرجى التأكد من قواعد الحماية (Rules) في الفايربيز وإعادة المحاولة.");
+                alert("❌ حدث خطأ أثناء الحجز، يرجى إعادة المحاولة.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
