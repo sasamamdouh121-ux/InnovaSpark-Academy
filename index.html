@@ -1,167 +1,294 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول / إنشاء حساب</title>
+    <title>InnovaSpark Academy | EngiCompass - بوصلة المهندس</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: #060a12;
+            color: #f1f5f9;
         }
-        .container {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            text-align: center;
+        .font-en {
+            font-family: 'Inter', sans-serif;
         }
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
+        .glow-orange {
+            box-shadow: 0 0 35px rgba(249, 115, 22, 0.45);
         }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
+        .text-gradient {
+            background: linear-gradient(135deg, #f97316, #fb923c, #fdba74);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .toggle-link {
-            margin-top: 15px;
-            display: block;
-            color: #007bff;
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: 14px;
-        }
-        #message {
-            margin-top: 15px;
-            font-size: 14px;
+        .hero-bg-poster {
+            background-image: linear-gradient(to bottom, rgba(6, 10, 18, 0.82), rgba(6, 10, 18, 0.95)), url('WhatsApp Image 2026-09-04 at 6.46.42 PM.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
 </head>
-<body>
+<body class="selection:bg-orange-500 selection:text-black">
 
-<div class="container">
-    <h2 id="form-title">تسجيل الدخول</h2>
-    
-    <input type="email" id="email" placeholder="البريد الإلكتروني" required>
-    <input type="password" id="password" placeholder="كلمة المرور" required>
-    
-    <button id="auth-btn">تسجيل الدخول</button>
-    
-    <span class="toggle-link" id="toggle-btn">ليس لديك حساب؟ إنشاء حساب جديد</span>
-    <p id="message"></p>
-</div>
+    <nav class="sticky top-0 z-40 bg-slate-950/85 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-black tracking-wider text-white font-en block leading-none">InnovaSpark</span>
+                    <span class="text-[10px] text-orange-400 font-bold tracking-widest font-en">ROBOTICS & ENGINEERING ACADEMY</span>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex space-x-7 space-x-reverse text-sm font-semibold text-slate-300">
+                <a href="#about" class="hover:text-orange-400 transition">عن الكورس</a>
+                <a href="#target" class="hover:text-orange-400 transition">الفئات المستهدفة</a>
+                <a href="#curriculum" class="hover:text-orange-400 transition">المحاور التعليمية</a>
+                <a href="#gallery" class="hover:text-orange-400 transition">معرض الأنشطة</a>
+                <a href="#reviews" class="hover:text-orange-400 transition">آراء الطلاب</a>
+            </div>
 
-<!-- استدعاء مكتبات Firebase الحديثة (Module Import) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { 
-    getAuth, 
-    signInWithEmailAndPassword, 
-    createUserWithEmailAndPassword 
-  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="booking.html" class="flex items-center gap-2 bg-slate-900 border border-slate-700 hover:border-orange-400 text-orange-400 px-3.5 py-2 rounded-xl text-xs font-bold transition shadow-md">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Admin 📋</span>
+                </a>
 
-  // 🔴 ضع إعدادات مشروع الفايربيز الجديد الخاص بك هنا 🔴
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
+                <button onclick="openBookingModal()" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-slate-950 font-extrabold px-5 py-2 rounded-xl shadow-lg transition duration-200 text-sm">
+                    سجل الآن 🚀
+                </button>
+            </div>
+        </div>
+    </nav>
 
-  // تهيئة الفايربيز
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    <section id="about" class="relative py-20 lg:py-32 overflow-hidden hero-bg-poster border-b border-slate-800/80">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+            <div class="inline-flex items-center space-x-2 space-x-reverse bg-slate-900/90 border border-orange-500/40 px-5 py-2 rounded-full text-xs sm:text-sm text-orange-400 font-bold backdrop-blur-md shadow-lg">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>برنامج تمهيدي للطلاب المقبلين على كلية الهندسة</span>
+            </div>
 
-  // عناصر الصفحة
-  const formTitle = document.getElementById('form-title');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
-  const authBtn = document.getElementById('auth-btn');
-  const toggleBtn = document.getElementById('toggle-btn');
-  const message = document.getElementById('message');
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight">
+                <span class="font-en block text-2xl sm:text-4xl text-orange-400 tracking-wider mb-2">EngiCompass</span>
+                <span class="text-gradient">بوصلة المهندس</span>
+            </h1>
 
-  let isSignUp = false; // التبديل بين الدخول وإنشاء حساب
+            <p class="text-xl sm:text-2xl text-slate-200 leading-relaxed font-bold max-w-2xl mx-auto">
+                مش مجرد داخل هندسة… أنت داخل تبدأ رحلة مهندس.
+            </p>
 
-  // التبديل بين وضع التسجيل والدخول
-  toggleBtn.addEventListener('click', () => {
-    isSignUp = !isSignUp;
-    if (isSignUp) {
-      formTitle.textContent = "إنشاء حساب جديد";
-      authBtn.textContent = "إنشاء حساب";
-      toggleBtn.textContent = "لديك حساب بالفعل؟ تسجيل الدخول";
-    } else {
-      formTitle.textContent = "تسجيل الدخول";
-      authBtn.textContent = "تسجيل الدخول";
-      toggleBtn.textContent = "ليس لديك حساب؟ إنشاء حساب جديد";
-    }
-    message.textContent = "";
-  });
+            <div class="flex flex-wrap justify-center gap-4 pt-4">
+                <button onclick="openBookingModal()" class="bg-orange-500 hover:bg-orange-400 text-slate-950 font-black px-8 py-3.5 rounded-xl glow-orange transition text-base flex items-center space-x-2 space-x-reverse">
+                    <span>ابدأ رحلتك الهندسية صح</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
-  // زر الإرسال (الدخول / التسجيل)
-  authBtn.addEventListener('click', () => {
-    const email = emailInput.value;
-    const password = passwordInput.value;
+    <section id="target" class="py-16 bg-slate-900/40 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-3xl font-black text-white">اختر فئتك للحجز مباشرة</h2>
+                <p class="text-slate-400 mt-2 text-sm">اضغط على الكارت لتعبئة بيانات الحجز الخاصة بك</p>
+            </div>
 
-    if(!email || !password) {
-      message.style.color = "red";
-      message.textContent = "يرجى إدخال البريد وكلمة المرور";
-      return;
-    }
+            <div class="grid md:grid-cols-3 gap-6">
+                <div onclick="openBookingModal('طلاب الثانوية العامة')" 
+                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
+                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
+                        🎯
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">طلاب الثانوية العامة</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">المقبولين حديثاً في كليات الهندسة وعايزين يفهموا طبيعة المرحلة القادمة.</p>
+                </div>
 
-    if (isSignUp) {
-      // إنشاء حساب جديد
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          message.style.color = "green";
-          message.textContent = "تم إنشاء الحساب بنجاح!";
-        })
-        .catch((error) => {
-          message.style.color = "red";
-          message.textContent = "خطأ: " + error.message;
-        });
-    } else {
-      // تسجيل الدخول
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          message.style.color = "green";
-          message.textContent = "تم تسجيل الدخول بنجاح!";
-          // يمكنك إعادة التوجيه لصفحة أخرى هنا مثلاً:
-          // window.location.href = "home.html";
-        })
-        .catch((error) => {
-          message.style.color = "red";
-          message.textContent = "خطأ في البريد أو كلمة المرور";
-        });
-    }
-  });
-</script>
+                <div onclick="openBookingModal('طلاب أولى هندسة')" 
+                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
+                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
+                        🚀
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">طلاب أولى هندسة</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">الذين يريدون تنظيم دراستهم في أسرع وقت وبناء اتجاه واضح ومحدد.</p>
+                </div>
 
+                <div onclick="openBookingModal('طالب مهتم بالهندسة')" 
+                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
+                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
+                        💡
+                    </div>
+                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">أي طالب مهتم بالهندسة</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">يريد استكشاف مجالات الهندسة المتعددة واكتشاف المهارات المطلوبة لسوق العمل.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-slate-900/30 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">معرض الصور الحقيقي</span>
+                <h2 class="text-3xl font-black text-white">جانب من أنشطة وورش أكاديمية InnovaSpark</h2>
+                <p class="text-slate-400 text-sm">اضغط على أي صورة لتكبيرها واستعراضها 🔍</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div onclick="openLightbox(0)" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer relative">
+                    <img src="WhatsApp Image 2026-09-04 at 6.43.51 PM.jpeg" alt="تأسيس مهندسي المستقبل" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-4">
+                        <h4 class="font-bold text-white text-base">تأسيس مهندسي المستقبل</h4>
+                    </div>
+                </div>
+
+                <div onclick="openLightbox(1)" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer relative">
+                    <img src="WhatsApp Image 2026-09-04 at 6.43.50 PM.jpeg" alt="ورشة الروبوتات" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-4">
+                        <h4 class="font-bold text-white text-base">ورشة الروبوتات والبرمجة</h4>
+                    </div>
+                </div>
+
+                <div onclick="openLightbox(2)" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer relative">
+                    <img src="WhatsApp Image 2026-09-04 at 6.43.48 PM (1).jpeg" alt="التفكير الهندسي" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                    <div class="p-4">
+                        <h4 class="font-bold text-white text-base">فهم الهياكل والتفكير الهندسي</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-6 relative shadow-2xl space-y-5">
+            <button onclick="closeBookingModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="space-y-1">
+                <h3 class="text-2xl font-black text-white">تسجيل الحجز 📝</h3>
+                <p class="text-slate-400 text-xs">يرجى كتابة بياناتك للتأكيد</p>
+            </div>
+
+            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">اسم الطالب بالكامل *</label>
+                    <input type="text" id="studentName" required placeholder="أدخل اسمك" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">رقم الهاتف (واتساب) *</label>
+                    <input type="tel" id="studentPhone" required placeholder="010XXXXXXXX" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400 font-en">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1">الصفة الدراسية / الفئة *</label>
+                    <select id="studentCategory" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400">
+                        <option value="طلاب الثانوية العامة">طلاب الثانوية العامة المقبولين بهندسة</option>
+                        <option value="طلاب أولى هندسة">طلاب أولى هندسة / إعدادي</option>
+                        <option value="طالب مهتم بالهندسة">أي طالب مهتم بمجالات الهندسة</option>
+                    </select>
+                </div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-black py-3.5 rounded-xl text-base shadow-lg hover:from-orange-400 hover:to-amber-500 transition">
+                    تأكيد وتسجيل الحجز 🚀
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg hidden flex flex-col items-center justify-center p-4">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-3xl">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="lightboxImage" src="" alt="صورة المعرض" class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-slate-800">
+    </div>
+
+    <!-- ربط Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBiH1SUJvCE4qBvZcuhqC-TPBj6ZiEByiI",
+            authDomain: "innovaspark-academy-82b0e.firebaseapp.com",
+            projectId: "innovaspark-academy-82b0e",
+            storageBucket: "innovaspark-academy-82b0e.firebasestorage.app",
+            messagingSenderId: "526950382364",
+            appId: "1:526950382364:web:019593f44b5f30b0e658d9",
+            measurementId: "G-C30R5TJV12"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // إتاحة المتغيرات للنافذة العامة لاستخدامها في دالة الحجز
+        window.db = db;
+        window.collection = collection;
+        window.addDoc = addDoc;
+    </script>
+
+    <script>
+        function openBookingModal(categoryName = '') {
+            const modal = document.getElementById('bookingModal');
+            const select = document.getElementById('studentCategory');
+            if(categoryName) select.value = categoryName;
+            modal.classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        async function submitBooking(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerText = "جاري التسجيل...";
+
+            const name = document.getElementById('studentName').value.trim();
+            const phone = document.getElementById('studentPhone').value.trim();
+            const category = document.getElementById('studentCategory').value;
+            const date = new Date().toLocaleString('ar-EG');
+
+            const newBooking = { name, phone, category, date };
+
+            try {
+                // إرسال البيانات مباشرة إلى مجموعة "bookings" في Firebase Firestore
+                await window.addDoc(window.collection(window.db, "bookings"), newBooking);
+
+                document.getElementById('bookingForm').reset();
+                closeBookingModal();
+                alert('✅ تم تسجيل الحجز بنجاح في الفايربيز!');
+            } catch (error) {
+                console.error("خطأ أثناء تسجيل الحجز: ", error);
+                alert("❌ حدث خطأ أثناء الحجز، يرجى المحاولة مرة أخرى: " + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
+            }
+        }
+
+        const galleryImages = [
+            "WhatsApp Image 2026-09-04 at 6.43.51 PM.jpeg",
+            "WhatsApp Image 2026-09-04 at 6.43.50 PM.jpeg",
+            "WhatsApp Image 2026-09-04 at 6.43.48 PM (1).jpeg"
+        ];
+
+        function openLightbox(index) {
+            document.getElementById('lightboxImage').src = galleryImages[index];
+            document.getElementById('lightboxModal').classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
