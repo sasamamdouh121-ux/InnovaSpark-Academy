@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaSpark Academy | نموذج الحجز</title>
+    <title>InnovaSpark Academy | نموذج الحجز الرئيسي</title>
     <style>
         :root {
             --primary-color: #f97316;
@@ -149,8 +149,9 @@
         <div class="logo">InnovaSpark Academy</div>
         <nav>
             <a href="index.html">الرئيسية</a>
-            <a href="booking.html" class="active">احجز الآن</a>
-            <a href="admin.html">لوحة الأدمن 🔐</a>
+            <a href="booking.html" class="active">احجز الآن (Booking)</a>
+            <a href="html.html">نموذج (HTML)</a>
+            <a href="admin.html">لوحة الأدمن / Control Panel 🔐</a>
         </nav>
     </header>
 
@@ -242,7 +243,7 @@
                 bookingForm.reset();
             } catch (error) {
                 console.error("Error writing document: ", error);
-                alert("❌ حدث خطأ أثناء الحفظ! يرجى التأكد من اتصال الإنترنت أو قواعد الحماية Rules في الفايربيز.");
+                alert("❌ حدث خطأ أثناء الحفظ! يرجى إعادة المحاولة.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
