@@ -3,100 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaSpark Academy | لوحة تحكم الأدمن</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <title>InnovaSpark Academy | نموذج الحجز</title>
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #060a12; color: #f1f5f9; }
+        :root {
+            --primary-color: #f97316;
+            --primary-hover: #ea580c;
+            --bg-color: #060a12;
+            --card-bg: #0f172a;
+            --text-color: #f1f5f9;
+            --border-color: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a.active, nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #020617;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #fff;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: #020617;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-submit:disabled {
+            background-color: #64748b;
+            cursor: not-allowed;
+        }
+
+        .alert {
+            display: none;
+            padding: 15px;
+            background-color: #064e3b;
+            color: #6ee7b7;
+            border: 1px solid #047857;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        footer {
+            background: var(--card-bg);
+            color: #94a3b8;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
     </style>
 </head>
-<body class="min-h-screen pb-10">
+<body>
 
-    <!-- شاشة تسجيل دخول الأدمن -->
-    <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 p-8 rounded-3xl max-w-md w-full shadow-2xl space-y-6 text-center">
-            <div class="w-16 h-16 bg-orange-500/10 text-orange-400 rounded-2xl flex items-center justify-center text-3xl mx-auto border border-orange-500/20">
-                <i class="fa-solid fa-user-shield"></i>
+    <header>
+        <div class="logo">InnovaSpark Academy</div>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="booking.html" class="active">احجز الآن</a>
+            <a href="admin.html">لوحة الأدمن 🔐</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>نموذج تأكيد الحجز 📝</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="fullName">الاسم الكامل *</label>
+                <input type="text" id="fullName" required placeholder="أدخل اسمك الثلاثي">
             </div>
-            <div>
-                <h2 class="text-2xl font-black text-white">لوحة الإدارة 🔐</h2>
-                <p class="text-slate-400 text-xs mt-1">يرجى أدخل كلمة المرور للوصول لحجوزات الطلاب</p>
+
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني *</label>
+                <input type="email" id="email" required placeholder="example@mail.com">
             </div>
-            <form id="loginForm" class="space-y-4">
-                <input type="password" id="adminPassword" placeholder="كلمة المرور" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-center tracking-widest text-lg focus:outline-none focus:border-orange-500">
-                <button type="submit" class="w-full bg-orange-500 hover:bg-orange-400 text-slate-950 font-black py-3 rounded-xl transition text-base">دخول اللوحة 🚀</button>
-            </form>
-            <p id="loginError" class="text-red-400 text-xs hidden">❌ كلمة المرور غير صحيحة!</p>
+
+            <div class="form-group">
+                <label for="phone">رقم الهاتف (واتساب) *</label>
+                <input type="tel" id="phone" required placeholder="010XXXXXXXX">
+            </div>
+
+            <div class="form-group">
+                <label for="service">الصفة الدراسية / الفئة *</label>
+                <select id="service" required>
+                    <option value="">-- اختر الفئة --</option>
+                    <option value="طلاب الثانوية العامة المقبولين بهندسة">طلاب الثانوية العامة المقبولين بهندسة</option>
+                    <option value="طلاب أولى هندسة / إعدادي">طلاب أولى هندسة / إعدادي</option>
+                    <option value="طالب مهتم بمجالات الهندسة">أي طالب مهتم بمجالات الهندسة</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">ملاحظات إضافية (اختياري):</label>
+                <textarea id="notes" rows="4" placeholder="أي تفاصيل أو استفسارات أخرى..."></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit">تأكيد وتسجيل الحجز 🚀</button>
+        </form>
+
+        <div id="successAlert" class="alert">
+            ✅ تم إرسال طلب الحجز بنجاح وحفظه في القاعدة! سنتواصل معك قريباً.
         </div>
     </div>
 
-    <!-- لوحة التحكم الرئيسية (تظهر بعد تسجيل الدخول) -->
-    <div id="adminDashboard" class="hidden">
-        <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 mb-8 sticky top-0 z-30">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-orange-500 text-slate-950 font-black rounded-xl flex items-center justify-center text-xl">📋</div>
-                    <div>
-                        <h1 class="text-lg font-black text-white">إدارة الحجوزات</h1>
-                        <p class="text-xs text-orange-400">InnovaSpark Academy</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <a href="index.html" class="text-xs text-slate-400 hover:text-white transition">العودة للموقع 🌐</a>
-                    <button onclick="logout()" class="bg-slate-800 hover:bg-red-500/20 text-slate-300 hover:text-red-400 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-bold transition">تسجيل الخروج</button>
-                </div>
-            </div>
-        </header>
+    <footer>
+        <p>&copy; 2026 InnovaSpark Academy. جميع الحقوق محفوظة.</p>
+    </footer>
 
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-            <!-- كروت الإحصائيات -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl flex items-center justify-between">
-                    <div>
-                        <p class="text-slate-400 text-xs font-bold">إجمالي الحجوزات</p>
-                        <h3 id="totalBookings" class="text-3xl font-black text-white mt-1">0</h3>
-                    </div>
-                    <div class="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-xl flex items-center justify-center text-xl">👥</div>
-                </div>
-            </div>
-
-            <!-- جدول الحجوزات -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                <div class="p-5 border-b border-slate-800 flex justify-between items-center">
-                    <h3 class="font-bold text-white text-base">قائمة بيانات الطلاب المسجلين</h3>
-                    <button onclick="fetchBookings()" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700 transition">
-                        تحديث البيانات 🔄
-                    </button>
-                </div>
-
-                <div class="overflow-x-auto">
-                    <table class="w-full text-right text-sm text-slate-300">
-                        <thead class="bg-slate-950 text-slate-400 text-xs uppercase border-b border-slate-800">
-                            <tr>
-                                <th class="p-4">اسم الطالب</th>
-                                <th class="p-4">رقم الهاتف (واتساب)</th>
-                                <th class="p-4">الصفة / الفئة</th>
-                                <th class="p-4">تاريخ التسجيل</th>
-                                <th class="p-4">ملاحظات</th>
-                                <th class="p-4 text-center">إجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="bookingsTableBody" class="divide-y divide-slate-800">
-                            <tr>
-                                <td colspan="6" class="text-center py-8 text-slate-500">جاري تحميل البيانات من قاعدة البيانات...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- Firebase Integration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBiH1SUJvCE4qBvZcuhqC-TPBj6ZiEByiI",
@@ -111,87 +216,38 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // كلمة مرور الأدمن (يمكنك تغييرها من هنا)
-        const ADMIN_PASS = "admin123";
+        const bookingForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const alertBox = document.getElementById('successAlert');
 
-        // التحقق من تسجيل الدخول
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
+        bookingForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const pass = document.getElementById('adminPassword').value;
-            if(pass === ADMIN_PASS) {
-                document.getElementById('loginSection').classList.add('hidden');
-                document.getElementById('adminDashboard').classList.remove('hidden');
-                fetchBookings();
-            } else {
-                document.getElementById('loginError').classList.remove('hidden');
-            }
-        });
 
-        window.logout = function() {
-            document.getElementById('adminDashboard').classList.add('hidden');
-            document.getElementById('loginSection').classList.remove('hidden');
-            document.getElementById('adminPassword').value = '';
-        };
-
-        // جلب الحجوزات من Firestore
-        window.fetchBookings = async function() {
-            const tableBody = document.getElementById('bookingsTableBody');
-            tableBody.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-slate-500">جاري جلب الحجوزات...</td></tr>';
+            submitBtn.disabled = true;
+            submitBtn.innerText = "جاري الحفظ في القاعدة...";
+            alertBox.style.display = 'none';
 
             try {
-                const q = query(collection(db, "bookings"), orderBy("timestamp", "desc"));
-                const querySnapshot = await getDocs(q);
-                
-                document.getElementById('totalBookings').innerText = querySnapshot.size;
-
-                if(querySnapshot.empty) {
-                    tableBody.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-slate-500">لا توجد حجوزات مسجلة حتى الآن.</td></tr>';
-                    return;
-                }
-
-                tableBody.innerHTML = '';
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const docId = docSnap.id;
-
-                    const row = document.createElement('tr');
-                    row.className = 'hover:bg-slate-800/50 transition';
-                    row.innerHTML = `
-                        <td class="p-4 font-bold text-white">${data.name || 'غير محدد'}</td>
-                        <td class="p-4 font-mono text-orange-400">
-                            <a href="https://wa.me/2${data.phone}" target="_blank" class="hover:underline flex items-center gap-1">
-                                <i class="fa-brands fa-whatsapp text-emerald-400"></i> ${data.phone || '-'}
-                            </a>
-                        </td>
-                        <td class="p-4"><span class="bg-slate-800 text-slate-300 text-xs px-2.5 py-1 rounded-full border border-slate-700">${data.category || '-'}</span></td>
-                        <td class="p-4 text-xs text-slate-400">${data.date || data.bookingDate || '-'}</td>
-                        <td class="p-4 text-xs text-slate-400">${data.notes || '-'}</td>
-                        <td class="p-4 text-center">
-                            <button onclick="deleteBooking('${docId}')" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white p-2 rounded-lg text-xs transition border border-red-500/20">
-                                <i class="fa-solid fa-trash"></i> حذف
-                            </button>
-                        </td>
-                    `;
-                    tableBody.appendChild(row);
+                await addDoc(collection(db, "bookings"), {
+                    name: document.getElementById('fullName').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    category: document.getElementById('service').value,
+                    notes: document.getElementById('notes').value.trim(),
+                    date: new Date().toLocaleDateString('ar-EG'),
+                    timestamp: serverTimestamp()
                 });
 
+                alertBox.style.display = 'block';
+                bookingForm.reset();
             } catch (error) {
-                console.error("Error fetching bookings:", error);
-                tableBody.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-red-400">حدث خطأ أثناء جلب البيانات من قاعدة البيانات.</td></tr>';
+                console.error("Error writing document: ", error);
+                alert("❌ حدث خطأ أثناء الحفظ! يرجى التأكد من اتصال الإنترنت أو قواعد الحماية Rules في الفايربيز.");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
             }
-        };
-
-        // حذف حجز
-        window.deleteBooking = async function(id) {
-            if(confirm('هل أنت تأكد من رغبتك في حذف هذا الحجز نهائياً؟')) {
-                try {
-                    await deleteDoc(doc(db, "bookings", id));
-                    fetchBookings();
-                } catch (error) {
-                    alert('❌ حدث خطأ أثناء الحذف.');
-                }
-            }
-        };
+        });
     </script>
 </body>
 </html>
