@@ -176,7 +176,7 @@
                 <p class="text-slate-400 text-xs">يرجى كتابة بياناتك للتأكيد</p>
             </div>
 
-            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
+            <form id="bookingForm" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold text-slate-300 mb-1">اسم الطالب بالكامل *</label>
                     <input type="text" id="studentName" required placeholder="أدخل اسمك" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400">
@@ -210,7 +210,7 @@
         <img id="lightboxImage" src="" alt="صورة المعرض" class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-slate-800">
     </div>
 
-    <!-- ربط Firebase -->
+    <!-- Firebase Integration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -228,26 +228,23 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // إتاحة المتغيرات للنافذة العامة لاستخدامها في دالة الحجز
-        window.db = db;
-        window.collection = collection;
-        window.addDoc = addDoc;
-    </script>
-
-    <script>
-        function openBookingModal(categoryName = '') {
+        // جعل الدوال متاحة للنافذة العالمية (window) عشان الـ HTML onclick يتصل بيها
+        window.openBookingModal = function(categoryName = '') {
             const modal = document.getElementById('bookingModal');
             const select = document.getElementById('studentCategory');
             if(categoryName) select.value = categoryName;
             modal.classList.remove('hidden');
-        }
+        };
 
-        function closeBookingModal() {
+        window.closeBookingModal = function() {
             document.getElementById('bookingModal').classList.add('hidden');
-        }
+        };
 
-        async function submitBooking(event) {
+        // معالجة نموذج الحجز مباشرة مع Firebase
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', async (event) => {
             event.preventDefault();
+
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.innerText = "جاري التسجيل...";
@@ -257,38 +254,43 @@
             const category = document.getElementById('studentCategory').value;
             const date = new Date().toLocaleString('ar-EG');
 
-            const newBooking = { name, phone, category, date };
-
             try {
-                // إرسال البيانات مباشرة إلى مجموعة "bookings" في Firebase Firestore
-                await window.addDoc(window.collection(window.db, "bookings"), newBooking);
+                // إضافة الحجز في Firestore بجدول (collection) اسمه bookings
+                await addDoc(collection(db, "bookings"), {
+                    name: name,
+                    phone: phone,
+                    category: category,
+                    date: date,
+                    timestamp: new Date()
+                });
 
-                document.getElementById('bookingForm').reset();
-                closeBookingModal();
+                bookingForm.reset();
+                window.closeBookingModal();
                 alert('✅ تم تسجيل الحجز بنجاح في الفايربيز!');
             } catch (error) {
                 console.error("خطأ أثناء تسجيل الحجز: ", error);
-                alert("❌ حدث خطأ أثناء الحجز، يرجى المحاولة مرة أخرى: " + error.message);
+                alert("❌ حدث خطأ أثناء الحجز، يرجى التأكد من قواعد الحماية (Rules) في الفايربيز وإعادة المحاولة.");
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
             }
-        }
+        });
 
+        // الصور
         const galleryImages = [
             "WhatsApp Image 2026-09-04 at 6.43.51 PM.jpeg",
             "WhatsApp Image 2026-09-04 at 6.43.50 PM.jpeg",
             "WhatsApp Image 2026-09-04 at 6.43.48 PM (1).jpeg"
         ];
 
-        function openLightbox(index) {
+        window.openLightbox = function(index) {
             document.getElementById('lightboxImage').src = galleryImages[index];
             document.getElementById('lightboxModal').classList.remove('hidden');
-        }
+        };
 
-        function closeLightbox() {
+        window.closeLightbox = function() {
             document.getElementById('lightboxModal').classList.add('hidden');
-        }
+        };
     </script>
 </body>
 </html>
