@@ -1,690 +1,208 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaSpark Academy | EngiCompass - بوصلة المهندس</title>
-    
-    <!-- Tailwind CSS & FontAwesome Icons -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-
+    <title>احجز الآن - نموذج الحجز</title>
     <style>
+        :root {
+            --primary-color: #007bff;
+            --light-bg: #f8f9fa;
+            --dark-text: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #060a12;
-            color: #f1f5f9;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
         }
-        .font-en {
-            font-family: 'Inter', sans-serif;
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .glow-orange {
-            box-shadow: 0 0 35px rgba(249, 115, 22, 0.45);
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #f97316, #fb923c, #fdba74);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
         }
-        .hero-bg-poster {
-            background-image: linear-gradient(to bottom, rgba(6, 10, 18, 0.85), rgba(6, 10, 18, 0.95)), url('WhatsApp Image 2026-09-04 at 6.46.42 PM.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+
+        nav a.active {
+            color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            display: none;
+            padding: 15px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
         }
     </style>
 </head>
-<body class="selection:bg-orange-500 selection:text-black">
+<body>
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg">
-                    <i class="fa-solid fa-compass"></i>
-                </div>
-                <div>
-                    <span class="text-2xl font-black tracking-wider text-white font-en block leading-none">InnovaSpark</span>
-                    <span class="text-[10px] text-orange-400 font-bold tracking-widest font-en">ROBOTICS & ENGINEERING ACADEMY</span>
-                </div>
-            </div>
-            
-            <!-- Desktop Nav Links -->
-            <div class="hidden lg:flex space-x-6 space-x-reverse text-sm font-semibold text-slate-300">
-                <a href="#about" class="hover:text-orange-400 transition">عن الكورس</a>
-                <a href="#curriculum" class="hover:text-orange-400 transition">المحاور التعليمية</a>
-                <a href="#benefits" class="hover:text-orange-400 transition">ماذا ستستفيد؟</a>
-                <a href="#gallery" class="hover:text-orange-400 transition">معرض الأنشطة</a>
-                <a href="#reviews" class="hover:text-orange-400 transition">آراء الطلاب</a>
-                <a href="#links" class="hover:text-orange-400 transition">التواصل والروابط</a>
+    <header>
+        <div class="logo">موقعي</div>
+        <nav>
+            <a href="index.html">الرئيسية</a>
+            <a href="booking.html" class="active">احجز الآن</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>نموذج تأكيد الحجز</h2>
+        <form id="bookingForm">
+            <div class="form-group">
+                <label for="fullName">الاسم الكامل:</label>
+                <input type="text" id="fullName" required placeholder="أدخل اسمك الثلاثي">
             </div>
 
-            <!-- Header Actions -->
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <button type="button" onclick="openPassModal()" class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 hover:border-orange-400 text-orange-400 px-3 py-2 rounded-xl text-xs font-bold transition shadow-md cursor-pointer">
-                    <i class="fa-solid fa-lock"></i>
-                    <span>Admin 📋</span>
-                </button>
-
-                <button type="button" onclick="openBookingModal()" class="bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-slate-950 font-extrabold px-5 py-2 rounded-xl shadow-lg transition duration-200 text-sm cursor-pointer">
-                    سجل الآن 🚀
-                </button>
+            <div class="form-group">
+                <label for="email">البريد الإلكتروني:</label>
+                <input type="email" id="email" required placeholder="example@mail.com">
             </div>
+
+            <div class="form-group">
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" required placeholder="05xxxxxxxx">
+            </div>
+
+            <div class="form-group">
+                <label for="service">اختر الخدمة:</label>
+                <select id="service" required>
+                    <option value="">-- اختر من القائمة --</option>
+                    <option value="service1">الخدمة الأولى</option>
+                    <option value="service2">الخدمة الثانية</option>
+                    <option value="service3">الخدمة الثالثة</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">تاريخ الحجز:</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">ملاحظات إضافية (اختياري):</label>
+                <textarea id="notes" rows="4" placeholder="أي تفاصيل أخرى تريد إضافتها..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">تأكيد الحجز</button>
+        </form>
+
+        <div id="successAlert" class="alert">
+            تم إرسال طلب الحجز بنجاح! سنتواصل معك قريباً.
         </div>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="about" class="relative py-20 lg:py-32 overflow-hidden hero-bg-poster border-b border-slate-800/80">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
-            <div class="inline-flex items-center space-x-2 space-x-reverse bg-slate-900/90 border border-orange-500/40 px-5 py-2 rounded-full text-xs sm:text-sm text-orange-400 font-bold backdrop-blur-md shadow-lg">
-                <i class="fa-solid fa-graduation-cap"></i>
-                <span>INNOVASPARK PRESENTS | Your First Direction Into Engineering</span>
-            </div>
-
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black leading-tight">
-                <span class="font-en block text-2xl sm:text-4xl text-orange-400 tracking-wider mb-2">EngiCompass</span>
-                <span class="text-gradient">بوصلة المهندس</span>
-            </h1>
-
-            <p class="text-xl sm:text-2xl text-slate-200 leading-relaxed font-bold max-w-2xl mx-auto">
-                "مش مجرد داخل هندسة… أنت داخل تبدأ رحلة مهندس."
-            </p>
-
-            <p class="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto">
-                برنامج تمهيدي شامل للطلاب المقبولين في كليات الهندسة والطلاب الجدد، يمنحك الأساس القوي والتصور الواضح للتخصصات والتفكير الهندسي قبل بداية الدراسة.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <button type="button" onclick="openBookingModal()" class="bg-orange-500 hover:bg-orange-400 text-slate-950 font-black px-8 py-3.5 rounded-xl glow-orange transition text-base flex items-center space-x-2 space-x-reverse cursor-pointer">
-                    <span>ابدأ رحلتك الهندسية صح 🧭</span>
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Target Audience / لمن هذا الكورس -->
-    <section id="target" class="py-16 bg-slate-900/40 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-black text-white">من المستهدفين بالبرنامج؟ 🎯</h2>
-                <p class="text-slate-400 mt-2 text-sm">اختر فئتك واضغط للحجز المباشر</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="openBookingModal('طلاب الثانوية العامة')" 
-                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
-                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
-                        🎓
-                    </div>
-                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">طلاب الثانوية العامة</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">المقبولين حديثاً في كليات الهندسة والراغبين في فهم طبيعة المرحلة القادمة.</p>
-                </div>
-
-                <div onclick="openBookingModal('طلاب أولى هندسة')" 
-                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
-                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
-                        🚀
-                    </div>
-                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">طلاب أولى هندسة</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">الطلاب الجدد اللي هيبدأوا أول سنة هندسة ويريدون تنظيم دراستهم وتبسيط المواد.</p>
-                </div>
-
-                <div onclick="openBookingModal('طالب مهتم بالهندسة')" 
-                     class="bg-slate-900 border border-slate-800 hover:border-orange-400 p-6 rounded-2xl transition cursor-pointer transform hover:-translate-y-1.5 duration-200 text-center space-y-3 group relative">
-                    <div class="w-14 h-14 bg-orange-950/60 text-orange-400 rounded-xl flex items-center justify-center text-2xl mx-auto border border-orange-800">
-                        💡
-                    </div>
-                    <h3 class="text-lg font-bold text-white group-hover:text-orange-400 transition">أي طالب مهتم بالهندسة</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">يريد استكشاف مجالات الهندسة المتعددة وتحديد اتجاهه وشغفه من البداية.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Curriculum Section / محاور ومحتوى الكورس الكلية -->
-    <section id="curriculum" class="py-20 bg-slate-950 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">المحتوى التعليمي الشامل</span>
-                <h2 class="text-3xl sm:text-4xl font-black text-white">محاور كورس EngiCompass 📚</h2>
-                <p class="text-slate-400 text-sm">6 محاور رئيسية مبنية لتجهيز المهندس بكل المهارات والأدوات المطلوبة</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Module 1 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            01
-                        </div>
-                        <h3 class="text-base font-bold text-white">الاستعداد والمرحلة الجامعية</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>الفرق بين الدراسة المدرسية والدراسة الجامعية.</li>
-                        <li>إزاي تستغل وتستفيد من سنوات الكلية بأقصى درجة.</li>
-                        <li>ما هي الهندسة؟ وطريقة التفكير وحل المشكلات.</li>
-                    </ul>
-                </div>
-
-                <!-- Module 2 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            02
-                        </div>
-                        <h3 class="text-base font-bold text-white">خريطة الطريق (Roadmap)</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>خريطة طريق كاملة لكل التخصصات والمجالات الهندسية.</li>
-                        <li>مجالات عمل كل تخصص وأماكن التوظيف.</li>
-                        <li>ماذا يحتاج الطالب أن يتعلم ونظرة شاملة لسوق العمل.</li>
-                    </ul>
-                </div>
-
-                <!-- Module 3 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            03
-                        </div>
-                        <h3 class="text-base font-bold text-white">المهارات والتطبيق العملي</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>الأدوات البرمجية والهندسية المطلوبة.</li>
-                        <li>تحديد نقاط القوة والضعف بناءً على تقييمات وأسئلة.</li>
-                        <li>عرض مشكلات حقيقية وتحليلها لمعرفة أسلوب التفكير.</li>
-                    </ul>
-                </div>
-
-                <!-- Module 4 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            04
-                        </div>
-                        <h3 class="text-base font-bold text-white">التطوير المهني والشخصي</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>إنشاء حساب LinkedIn وبناء السيرة الذاتية (CV).</li>
-                        <li>كيفية التقديم على المسابقات والتصفيات والتدريبات.</li>
-                        <li>إيجاد الأفكار والمشاريع واختيار أعضاء الفريق (Team).</li>
-                    </ul>
-                </div>
-
-                <!-- Module 5 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            05
-                        </div>
-                        <h3 class="text-base font-bold text-white">النظام الأكاديمي والمصطلحات</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>شرح الساعات المعتمدة ونظام الـ GPA الأكاديمي.</li>
-                        <li>ملفات الـ PDF والمصطلحات ومفاهيم المواد الدراسية.</li>
-                        <li>التواجد والتواصل الدائم عبر WhatsApp Community و Discord.</li>
-                    </ul>
-                </div>
-
-                <!-- Module 6 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/50 transition">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-xl bg-orange-950/60 border border-orange-800 text-orange-400 flex items-center justify-center text-lg font-bold">
-                            06
-                        </div>
-                        <h3 class="text-base font-bold text-white">التخطيط والختام</h3>
-                    </div>
-                    <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
-                        <li>خريطة عمل متكاملة مخصصة للسنة الأولى (إعدادي هندسة).</li>
-                        <li>خطة المهارات المطلوبة والتدرج فيها خطوة بخطوة.</li>
-                        <li>تحديد الأهداف المستقبلية وبناء الذات بشكل عملي.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section / ماذا يستفيد الطالب -->
-    <section id="benefits" class="py-16 bg-slate-900/30 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">القيمة المضافة</span>
-                <h2 class="text-3xl font-black text-white">ماذا ستستفيد بعد الكورس؟ ✨</h2>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">تصور واضح</h4>
-                        <p class="text-xs text-slate-400 mt-1">فهم كامل ونظرة شاملة عن كلية الهندسة ونظامها.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">معرفة التخصصات</h4>
-                        <p class="text-xs text-slate-400 mt-1">تحديد المجالات والتخصص الهندسية الأنسب لك.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">أساسيات قوية</h4>
-                        <p class="text-xs text-slate-400 mt-1">امتلاك الأساسيات الأكاديمية والتقنية لتسهيل البداية.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">التفكير الهندسي</h4>
-                        <p class="text-xs text-slate-400 mt-1">اكتساب مهارة تحليل المشكلات وحلها كمهندس.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">الأدوات والمهارات</h4>
-                        <p class="text-xs text-slate-400 mt-1">فهم البرامج والمهارات التنافسية المطلوبة بسوق العمل.</p>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl flex items-start gap-4">
-                    <div class="text-orange-400 text-xl font-bold">✅</div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">بداية عملية</h4>
-                        <p class="text-xs text-slate-400 mt-1">الانطلاق بالتطبيق والخبرة بدلاً من حفظ النظرية فقط.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-20 bg-slate-950 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">معرض الأنشطة</span>
-                <h2 class="text-3xl font-black text-white">صور حقيقية من ورش وفعاليات الأكاديمية 📸</h2>
-                <p class="text-slate-400 text-sm">اضغط على أي صورة للتكبير والمعاينة</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <div onclick="openLightbox('WhatsApp Image 2026-09-04 at 6.43.51 PM.jpeg')" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer">
-                    <img src="WhatsApp Image 2026-09-04 at 6.43.51 PM.jpeg" alt="ورشة عمل" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4">
-                        <h4 class="font-bold text-white text-sm">التطبيق العملي والتفاعل الجماعي</h4>
-                    </div>
-                </div>
-
-                <div onclick="openLightbox('WhatsApp Image 2026-09-04 at 6.43.50 PM.jpeg')" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer">
-                    <img src="WhatsApp Image 2026-09-04 at 6.43.50 PM.jpeg" alt="ورشة الروبوتات" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4">
-                        <h4 class="font-bold text-white text-sm">ورش الروبوتات والأنظمة المدمجة</h4>
-                    </div>
-                </div>
-
-                <div onclick="openLightbox('WhatsApp Image 2026-09-04 at 6.43.48 PM (1).jpeg')" class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-orange-500/50 transition cursor-pointer">
-                    <img src="WhatsApp Image 2026-09-04 at 6.43.48 PM (1).jpeg" alt="التفكير الهندسي" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
-                    <div class="p-4">
-                        <h4 class="font-bold text-white text-sm">بناء الهياكل وبناء عقلية المهندس</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section / آراء الطلاب -->
-    <section id="reviews" class="py-20 bg-slate-900/40 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">آراء وانطباعات</span>
-                <h2 class="text-3xl font-black text-white">ماذا يقول طلابنا؟ ⭐</h2>
-                <p class="text-slate-400 text-sm">شهادات حقيقية من طلاب خاضوا التجربة مع InnovaSpark</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Review Card 1 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/40 transition">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        "الكورس فتح عيني على حاجات كتير كنت خايف منها قبل ما أدخل هندسة، الشرح عملي وفهمت إزاي أنظم دراستي من أول يوم بالكلية."
-                    </p>
-                    <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-bold text-white text-sm">طالب مقبل على هندسة</h4>
-                            <span class="text-xs text-orange-400">ثانوية عامة</span>
-                        </div>
-                        <div class="w-9 h-9 rounded-full bg-orange-950/60 border border-orange-500/30 text-orange-400 flex items-center justify-center font-bold text-xs">
-                            🎯
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Review Card 2 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/40 transition">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        "ورشة الروبوتات والتفكير الهندسي كانت ممتازة جداً، أسلوب الأكاديمية مش مجرد تلقين ده تطبيق واستكشاف فعلي لسوق العمل."
-                    </p>
-                    <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-bold text-white text-sm">طالب إعدادي هندسة</h4>
-                            <span class="text-xs text-orange-400">أولى هندسة</span>
-                        </div>
-                        <div class="w-9 h-9 rounded-full bg-orange-950/60 border border-orange-500/30 text-orange-400 flex items-center justify-center font-bold text-xs">
-                            🚀
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Review Card 3 -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl space-y-4 hover:border-orange-500/40 transition">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-300 text-sm leading-relaxed">
-                        "تجربة ممتازة وبوصلة حقيقية لخريجي الثانوية العامة المهتمين بالهندسة، عرفت الفرق بين الأقسام والمهارات المطلوبة مستقبلاً."
-                    </p>
-                    <div class="border-t border-slate-800/80 pt-4 flex items-center justify-between">
-                        <div>
-                            <h4 class="font-bold text-white text-sm">طالب مهتم بالهندسة</h4>
-                            <span class="text-xs text-orange-400">شغوف بالمجال</span>
-                        </div>
-                        <div class="w-9 h-9 rounded-full bg-orange-950/60 border border-orange-500/30 text-orange-400 flex items-center justify-center font-bold text-xs">
-                            💡
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Links & Socials / حسابات وروابط التواصل الرسمية -->
-    <section id="links" class="py-20 bg-slate-950 border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
-                <span class="text-orange-400 font-bold text-xs uppercase tracking-widest">تواصل معنا</span>
-                <h2 class="text-3xl font-black text-white">منصات الأكاديمية الرسمية 🌐</h2>
-                <p class="text-slate-400 text-sm">تابع صفحاتنا أو تواصل عبر الهاتف والواتساب للحجز والاستفسار</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                <!-- Phone / Whatsapp -->
-                <a href="https://wa.me/201227694466" target="_blank" class="bg-slate-900 border border-slate-800 hover:border-green-500/60 p-5 rounded-2xl flex items-center gap-4 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-green-950/60 border border-green-800 text-green-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">واتساب مباشر</h4>
-                        <span class="text-xs text-slate-400 font-en">01227694466</span>
-                    </div>
-                </a>
-
-                <!-- Facebook -->
-                <a href="https://www.facebook.com/share/1M45DfW72g/" target="_blank" class="bg-slate-900 border border-slate-800 hover:border-blue-500/60 p-5 rounded-2xl flex items-center gap-4 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-blue-950/60 border border-blue-800 text-blue-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">فيسبوك</h4>
-                        <span class="text-xs text-slate-400">الصفحة الرسمية</span>
-                    </div>
-                </a>
-
-                <!-- Instagram -->
-                <a href="https://www.instagram.com/innovaspark.academy?igsi=MXJwenFqejYyZnNkeg==" target="_blank" class="bg-slate-900 border border-slate-800 hover:border-pink-500/60 p-5 rounded-2xl flex items-center gap-4 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-pink-950/60 border border-pink-800 text-pink-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">إنستغرام</h4>
-                        <span class="text-xs text-slate-400 font-en">@innovaspark.academy</span>
-                    </div>
-                </a>
-
-                <!-- TikTok -->
-                <a href="https://www.tiktok.com/@innova.spark.academy?_r=1&_t=ZS-99SHxYhC3qW" target="_blank" class="bg-slate-900 border border-slate-800 hover:border-purple-500/60 p-5 rounded-2xl flex items-center gap-4 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-purple-950/60 border border-purple-800 text-purple-400 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-white text-sm">تيك توك</h4>
-                        <span class="text-xs text-slate-400 font-en">@innova.spark.academy</span>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-950 py-8 text-center text-slate-500 text-xs border-t border-slate-900">
-        <p>جميع الحقوق محفوظة © InnovaSpark Academy — EngiCompass 🧭</p>
+    <footer>
+        <p>&copy; 2026 جميع الحقوق محفوظة.</p>
     </footer>
 
-    <!-- Booking Modal / نافذة الحجز -->
-    <div id="bookingModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-6 relative shadow-2xl space-y-5">
-            <button type="button" onclick="closeBookingModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="space-y-1">
-                <h3 class="text-2xl font-black text-white">تسجيل الحجز 🚀</h3>
-                <p class="text-slate-400 text-xs">احجز مكانك في كورس EngiCompass الآن</p>
-            </div>
-
-            <form id="bookingForm" onsubmit="submitBooking(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">اسم الطالب بالكامل *</label>
-                    <input type="text" id="studentName" required placeholder="أدخل اسمك" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">رقم الهاتف (واتساب) *</label>
-                    <input type="tel" id="studentPhone" required placeholder="012XXXXXXXX" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400 font-en">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-300 mb-1">الصفة الدراسية / الفئة *</label>
-                    <select id="studentCategory" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-orange-400">
-                        <option value="طلاب الثانوية العامة">طلاب الثانوية العامة المقبولين بهندسة</option>
-                        <option value="طلاب أولى هندسة">طلاب أولى هندسة / إعدادي</option>
-                        <option value="طالب مهتم بالهندسة">أي طالب مهتم بمجالات الهندسة</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-amber-600 text-slate-950 font-black py-3.5 rounded-xl text-base shadow-lg hover:from-orange-400 hover:to-amber-500 transition cursor-pointer">
-                    تأكيد وتسجيل الحجز 🚀
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Admin Password Prompt Modal / نافذة إدخل الباسورد شيك جداً -->
-    <div id="passModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm rounded-3xl p-6 relative shadow-2xl space-y-4 text-center">
-            <button type="button" onclick="closePassModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white text-lg">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="w-12 h-12 bg-orange-950/80 text-orange-400 border border-orange-800/80 rounded-2xl flex items-center justify-center mx-auto text-xl font-bold">
-                🔒
-            </div>
-            <div>
-                <h3 class="text-lg font-black text-white">دخول الإدمن</h3>
-                <p class="text-slate-400 text-xs mt-1">أدخل كلمة المرور لعرض الحجوزات</p>
-            </div>
-            <input type="password" id="adminPasswordInput" placeholder="Password" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-center text-white font-en focus:outline-none focus:border-orange-400">
-            <button type="button" onclick="verifyAdminPassword()" class="w-full bg-orange-500 hover:bg-orange-400 text-slate-950 font-extrabold py-2.5 rounded-xl text-sm transition">
-                دخول 🚀
-            </button>
-        </div>
-    </div>
-
-    <!-- Admin Panel Modal / نافذة الإدمن لإدارة الحجوزات -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-3xl p-6 relative shadow-2xl space-y-5 max-h-[85vh] overflow-y-auto">
-            <button type="button" onclick="closeAdminModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <div class="space-y-1">
-                <h3 class="text-2xl font-black text-white">لوحة إدمن الحجوزات 📋</h3>
-                <p class="text-slate-400 text-xs">عرض ومتابعة طلبات التسجيل المخزنة</p>
-            </div>
-
-            <div class="flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800">
-                <span class="text-xs text-slate-300">إجمالي الحجوزات: <strong id="bookingCount" class="text-orange-400">0</strong></span>
-                <button type="button" onclick="clearBookings()" class="text-xs bg-red-950/80 hover:bg-red-900 border border-red-800 text-red-300 px-3 py-1.5 rounded-lg transition cursor-pointer">
-                    مسح كافة الحجوزات 🗑️
-                </button>
-            </div>
-
-            <div id="bookingList" class="space-y-3">
-                <!-- Data populated dynamically via JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Lightbox Modal / عرض الصور -->
-    <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-lg hidden flex flex-col items-center justify-center p-4">
-        <button type="button" onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-3xl">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img id="lightboxImage" src="" alt="صورة المعرض" class="max-w-full max-h-[80vh] object-contain rounded-2xl border border-slate-800">
-    </div>
-
-    <!-- JavaScript Handlers -->
     <script>
-        const ADMIN_PASS = "123456";
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // منع إعادة تحميل الصفحة
 
-        function openPassModal() {
-            document.getElementById('adminPasswordInput').value = '';
-            document.getElementById('passModal').classList.remove('hidden');
-        }
+            // هنا يمكنك إضافة كود إرسال البيانات إلى السيرفر (AJAX / Fetch API)
 
-        function closePassModal() {
-            document.getElementById('passModal').classList.add('hidden');
-        }
+            // إظهار رسالة النجاح
+            const alertBox = document.getElementById('successAlert');
+            alertBox.style.display = 'block';
 
-        function verifyAdminPassword() {
-            const input = document.getElementById('adminPasswordInput').value;
-            if (input === ADMIN_PASS) {
-                closePassModal();
-                openAdminModal();
-            } else {
-                alert("❌ كلمة المرور غير صحيحة!");
-            }
-        }
-
-        // Modal Handlers
-        function openBookingModal(categoryName = '') {
-            const select = document.getElementById('studentCategory');
-            if(categoryName && select) select.value = categoryName;
-            document.getElementById('bookingModal').classList.remove('hidden');
-        }
-
-        function closeBookingModal() {
-            document.getElementById('bookingModal').classList.add('hidden');
-        }
-
-        function openAdminModal() {
-            renderBookings();
-            document.getElementById('adminModal').classList.remove('hidden');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.add('hidden');
-        }
-
-        // Form Submit
-        function submitBooking(event) {
-            event.preventDefault();
-            const name = document.getElementById('studentName').value.trim();
-            const phone = document.getElementById('studentPhone').value.trim();
-            const category = document.getElementById('studentCategory').value;
-            const date = new Date().toLocaleString('ar-EG');
-
-            const newBooking = { name, phone, category, date };
-
-            let bookings = JSON.parse(localStorage.getItem('engicompass_bookings') || '[]');
-            bookings.unshift(newBooking);
-            localStorage.setItem('engicompass_bookings', JSON.stringify(bookings));
-
-            document.getElementById('bookingForm').reset();
-            closeBookingModal();
-            alert('✅ تم تسجيل الحجز بنجاح!');
-        }
-
-        // Admin Bookings Render
-        function renderBookings() {
-            const list = document.getElementById('bookingList');
-            const count = document.getElementById('bookingCount');
-            let bookings = JSON.parse(localStorage.getItem('engicompass_bookings') || '[]');
-
-            if(count) count.textContent = bookings.length;
-            if(!list) return;
-
-            if (bookings.length === 0) {
-                list.innerHTML = `<p class="text-center text-slate-500 text-xs py-8">لا توجد حجوزات مسجلة حتى الآن.</p>`;
-                return;
-            }
-
-            list.innerHTML = bookings.map((item) => `
-                <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex items-center justify-between text-xs">
-                    <div class="space-y-1">
-                        <p class="font-bold text-white text-sm">${item.name}</p>
-                        <p class="text-orange-400 font-en">📱 ${item.phone}</p>
-                        <p class="text-slate-400">🏷️ ${item.category}</p>
-                        <span class="text-[10px] text-slate-500 block">${item.date}</span>
-                    </div>
-                    <a href="https://wa.me/2${item.phone}" target="_blank" class="bg-green-950/80 hover:bg-green-900 border border-green-800 text-green-400 px-3 py-2 rounded-lg font-bold transition">
-                        مراسلة 💬
-                    </a>
-                </div>
-            `).join('');
-        }
-
-        function clearBookings() {
-            if (confirm('هل أنت تأكد من مسح جميع الحجوزات؟')) {
-                localStorage.removeItem('engicompass_bookings');
-                renderBookings();
-            }
-        }
-
-        // Lightbox
-        function openLightbox(src) {
-            const img = document.getElementById('lightboxImage');
-            if(img) img.src = src;
-            document.getElementById('lightboxModal').classList.remove('hidden');
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightboxModal').classList.add('hidden');
-        }
+            // تفريغ الحقول
+            this.reset();
+        });
     </script>
+
 </body>
 </html>
