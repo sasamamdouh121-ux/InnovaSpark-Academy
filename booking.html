@@ -3,206 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InnovaSpark Academy | نموذج الحجز الرئيسي</title>
+    <title>InnovaSpark Academy | لوحة التحكم والأدمن</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #f97316;
-            --primary-hover: #ea580c;
-            --bg-color: #060a12;
-            --card-bg: #0f172a;
-            --text-color: #f1f5f9;
-            --border-color: #1e293b;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: #94a3b8;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        nav a.active, nav a:hover {
-            color: var(--primary-color);
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: var(--primary-color);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #cbd5e1;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background-color: #020617;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            color: #fff;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .btn-submit {
-            width: 100%;
-            background-color: var(--primary-color);
-            color: #020617;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-submit:disabled {
-            background-color: #64748b;
-            cursor: not-allowed;
-        }
-
-        .alert {
-            display: none;
-            padding: 15px;
-            background-color: #064e3b;
-            color: #6ee7b7;
-            border: 1px solid #047857;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        footer {
-            background: var(--card-bg);
-            color: #94a3b8;
-            text-align: center;
-            padding: 15px 0;
-            margin-top: 40px;
-            border-top: 1px solid var(--border-color);
-        }
+        body { font-family: 'Cairo', sans-serif; background-color: #060a12; color: #f1f5f9; }
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
 
-    <header>
-        <div class="logo">InnovaSpark Academy</div>
-        <nav>
-            <a href="index.html">الرئيسية</a>
-            <a href="booking.html" class="active">احجز الآن (Booking)</a>
-            <a href="html.html">نموذج (HTML)</a>
-            <a href="admin.html">لوحة الأدمن / Control Panel 🔐</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h2>نموذج تأكيد الحجز 📝</h2>
-        <form id="bookingForm">
-            <div class="form-group">
-                <label for="fullName">الاسم الكامل *</label>
-                <input type="text" id="fullName" required placeholder="أدخل اسمك الثلاثي">
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- Navbar / Header -->
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+            <div>
+                <h1 class="text-2xl font-black text-orange-500">لوحة تحكم الحجوزات (Control Panel) 📊</h1>
+                <p class="text-xs text-slate-400 mt-1">إدارة كافة طلبات التسجيل والحجوزات القادمة من الموقع</p>
             </div>
-
-            <div class="form-group">
-                <label for="email">البريد الإلكتروني *</label>
-                <input type="email" id="email" required placeholder="example@mail.com">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 transition">
+                    العودة للرئيسية 🏠
+                </a>
+                <button onclick="loadBookings()" class="bg-orange-500 hover:bg-orange-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-black transition">
+                    تحديث البيانات 🔄
+                </button>
             </div>
-
-            <div class="form-group">
-                <label for="phone">رقم الهاتف (واتساب) *</label>
-                <input type="tel" id="phone" required placeholder="010XXXXXXXX">
-            </div>
-
-            <div class="form-group">
-                <label for="service">الصفة الدراسية / الفئة *</label>
-                <select id="service" required>
-                    <option value="">-- اختر الفئة --</option>
-                    <option value="طلاب الثانوية العامة المقبولين بهندسة">طلاب الثانوية العامة المقبولين بهندسة</option>
-                    <option value="طلاب أولى هندسة / إعدادي">طلاب أولى هندسة / إعدادي</option>
-                    <option value="طالب مهتم بمجالات الهندسة">أي طالب مهتم بمجالات الهندسة</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="notes">ملاحظات إضافية (اختياري):</label>
-                <textarea id="notes" rows="4" placeholder="أي تفاصيل أو استفسارات أخرى..."></textarea>
-            </div>
-
-            <button type="submit" id="submitBtn" class="btn-submit">تأكيد وتسجيل الحجز 🚀</button>
-        </form>
-
-        <div id="successAlert" class="alert">
-            ✅ تم إرسال طلب الحجز بنجاح وحفظه في القاعدة! سنتواصل معك قريباً.
         </div>
+
+        <!-- Table Container -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-white">قائمة الحجوزات المسجلة</h2>
+                <span id="bookingCount" class="bg-orange-500/10 text-orange-400 border border-orange-500/20 px-3 py-1 rounded-full text-xs font-bold">
+                    عدد الحجوزات: 0
+                </span>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-right border-collapse">
+                    <thead>
+                        <tr class="border-b border-slate-800 text-xs text-slate-400 bg-slate-950/50">
+                            <th class="p-3">#</th>
+                            <th class="p-3">الاسم</th>
+                            <th class="p-3">البريد الإلكتروني</th>
+                            <th class="p-3">رقم الهاتف</th>
+                            <th class="p-3">الفئة الدراسية</th>
+                            <th class="p-3">الملاحظات</th>
+                            <th class="p-3">تاريخ الحجز</th>
+                            <th class="p-3 text-center">إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable" class="text-sm divide-y divide-slate-800">
+                        <tr>
+                            <td colspan="8" class="text-center py-8 text-slate-500 font-bold">جاري تحميل البيانات من قاعدة البيانات...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
-    <footer>
-        <p>&copy; 2026 InnovaSpark Academy. جميع الحقوق محفوظة.</p>
-    </footer>
-
+    <!-- Firebase SDK Modules -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBiH1SUJvCE4qBvZcuhqC-TPBj6ZiEByiI",
@@ -217,38 +83,66 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const bookingForm = document.getElementById('bookingForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const alertBox = document.getElementById('successAlert');
-
-        bookingForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            submitBtn.disabled = true;
-            submitBtn.innerText = "جاري الحفظ في القاعدة...";
-            alertBox.style.display = 'none';
+        async function loadBookings() {
+            const tbody = document.getElementById('bookingsTable');
+            const countBadge = document.getElementById('bookingCount');
+            tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-500 font-bold">جاري تحميل البيانات...</td></tr>`;
 
             try {
-                await addDoc(collection(db, "bookings"), {
-                    name: document.getElementById('fullName').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    phone: document.getElementById('phone').value.trim(),
-                    category: document.getElementById('service').value,
-                    notes: document.getElementById('notes').value.trim(),
-                    date: new Date().toLocaleDateString('ar-EG'),
-                    timestamp: serverTimestamp()
-                });
+                const q = query(collection(db, "bookings"), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                countBadge.innerText = `عدد الحجوزات: ${querySnapshot.size}`;
+                tbody.innerHTML = '';
 
-                alertBox.style.display = 'block';
-                bookingForm.reset();
+                if (querySnapshot.empty) {
+                    tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-500">لا توجد حجوزات مسجلة حتى الآن.</td></tr>`;
+                    return;
+                }
+
+                let index = 1;
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-800/50 transition";
+                    tr.innerHTML = `
+                        <td class="p-3 text-slate-400 font-mono text-xs">${index++}</td>
+                        <td class="p-3 font-bold text-white">${data.name || 'غير محدد'}</td>
+                        <td class="p-3 text-slate-300 font-mono text-xs">${data.email || '-'}</td>
+                        <td class="p-3 text-orange-400 font-mono text-xs">${data.phone || '-'}</td>
+                        <td class="p-3 text-xs text-slate-300">${data.category || '-'}</td>
+                        <td class="p-3 text-xs text-slate-400">${data.notes || '-'}</td>
+                        <td class="p-3 text-xs text-slate-400">${data.date || '-'}</td>
+                        <td class="p-3 text-center">
+                            <button onclick="deleteBooking('${docSnap.id}')" class="bg-red-500/10 hover:bg-red-500 text-red-400 hover:text-white border border-red-500/20 px-2.5 py-1 rounded-lg text-xs transition">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
             } catch (error) {
-                console.error("Error writing document: ", error);
-                alert("❌ حدث خطأ أثناء الحفظ! يرجى إعادة المحاولة.");
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerText = "تأكيد وتسجيل الحجز 🚀";
+                console.error("خطأ أثناء جلب الحجوزات: ", error);
+                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-red-400 font-bold">❌ حدث خطأ في الصلاحيات! تأكد من ضبط قواعد Rules في الفايربيز.</td></tr>`;
             }
-        });
+        }
+
+        async function deleteBooking(id) {
+            if (confirm("هل أنت تأكد من حذف هذا الحجز؟")) {
+                try {
+                    await deleteDoc(doc(db, "bookings", id));
+                    loadBookings();
+                } catch (error) {
+                    alert("❌ حدث خطأ أثناء الحذف");
+                }
+            }
+        }
+
+        window.loadBookings = loadBookings;
+        window.deleteBooking = deleteBooking;
+
+        // تحميل البيانات فور فتح الصفحة
+        loadBookings();
     </script>
 </body>
 </html>
