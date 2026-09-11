@@ -3,156 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الرئيسية - موقع الحجز</title>
+    <title>تسجيل الدخول / إنشاء حساب</title>
     <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --light-bg: #f8f9fa;
-            --dark-text: #333;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background-color: var(--light-bg);
-            color: var(--dark-text);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            padding: 1rem 2rem;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        nav a {
-            margin-right: 15px;
-            text-decoration: none;
-            color: var(--dark-text);
-            font-weight: 500;
-        }
-
-        nav a.active {
-            color: var(--primary-color);
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1200x400') no-repeat center center/cover;
-            height: 350px;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 320px;
             text-align: center;
-            padding: 0 20px;
         }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
+        h2 {
             margin-bottom: 20px;
+            color: #333;
         }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 10px 25px;
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
             border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
+            box-sizing: border-box;
         }
-
-        .btn:hover {
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
             background-color: #0056b3;
         }
-
-        .features {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        .toggle-link {
+            margin-top: 15px;
+            display: block;
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 14px;
         }
-
-        .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 15px 0;
-            margin-top: 40px;
+        #message {
+            margin-top: 15px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">موقعي</div>
-        <nav>
-            <a href="index.html" class="active">الرئيسية</a>
-            <a href="booking.html">احجز الآن</a>
-        </nav>
-    </header>
+<div class="container">
+    <h2 id="form-title">تسجيل الدخول</h2>
+    
+    <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+    <input type="password" id="password" placeholder="كلمة المرور" required>
+    
+    <button id="auth-btn">تسجيل الدخول</button>
+    
+    <span class="toggle-link" id="toggle-btn">ليس لديك حساب؟ إنشاء حساب جديد</span>
+    <p id="message"></p>
+</div>
 
-    <section class="hero">
-        <h1>أهلاً بك في منصة الحجز السريع</h1>
-        <p>احجز موعدك أو خدمتك بسهولة وفي خطوات بسيطة</p>
-        <a href="booking.html" class="btn">الانتقال لصفحة الحجز</a>
-    </section>
+<!-- استدعاء مكتبات Firebase الحديثة (Module Import) -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    <section class="features">
-        <div class="card">
-            <h3>سهولة الاستخدام</h3>
-            <p>واجهة بسيطة تمكنك من إتمام حجزك خلال دقائق معدودة.</p>
-        </div>
-        <div class="card">
-            <h3>تأكيد فوري</h3>
-            <p>تلقى تأكيد حجزك فور إكمال البيانات المطلوبة.</p>
-        </div>
-        <div class="card">
-            <h3>دعم مستمر</h3>
-            <p>فريقنا متواجد على مدار الساعة لمساعدتك في أي استفسار.</p>
-        </div>
-    </section>
+  // 🔴 ضع إعدادات مشروع الفايربيز الجديد الخاص بك هنا 🔴
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
 
-    <footer>
-        <p>&copy; 2026 جميع الحقوق محفوظة.</p>
-    </footer>
+  // تهيئة الفايربيز
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // عناصر الصفحة
+  const formTitle = document.getElementById('form-title');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const authBtn = document.getElementById('auth-btn');
+  const toggleBtn = document.getElementById('toggle-btn');
+  const message = document.getElementById('message');
+
+  let isSignUp = false; // التبديل بين الدخول وإنشاء حساب
+
+  // التبديل بين وضع التسجيل والدخول
+  toggleBtn.addEventListener('click', () => {
+    isSignUp = !isSignUp;
+    if (isSignUp) {
+      formTitle.textContent = "إنشاء حساب جديد";
+      authBtn.textContent = "إنشاء حساب";
+      toggleBtn.textContent = "لديك حساب بالفعل؟ تسجيل الدخول";
+    } else {
+      formTitle.textContent = "تسجيل الدخول";
+      authBtn.textContent = "تسجيل الدخول";
+      toggleBtn.textContent = "ليس لديك حساب؟ إنشاء حساب جديد";
+    }
+    message.textContent = "";
+  });
+
+  // زر الإرسال (الدخول / التسجيل)
+  authBtn.addEventListener('click', () => {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    if(!email || !password) {
+      message.style.color = "red";
+      message.textContent = "يرجى إدخال البريد وكلمة المرور";
+      return;
+    }
+
+    if (isSignUp) {
+      // إنشاء حساب جديد
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          message.style.color = "green";
+          message.textContent = "تم إنشاء الحساب بنجاح!";
+        })
+        .catch((error) => {
+          message.style.color = "red";
+          message.textContent = "خطأ: " + error.message;
+        });
+    } else {
+      // تسجيل الدخول
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          message.style.color = "green";
+          message.textContent = "تم تسجيل الدخول بنجاح!";
+          // يمكنك إعادة التوجيه لصفحة أخرى هنا مثلاً:
+          // window.location.href = "home.html";
+        })
+        .catch((error) => {
+          message.style.color = "red";
+          message.textContent = "خطأ في البريد أو كلمة المرور";
+        });
+    }
+  });
+</script>
 
 </body>
 </html>
